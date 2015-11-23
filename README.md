@@ -1,2 +1,1 @@
-# vstcheckin-
-checkin app for the Desert Bus Video Strike Team
+Server for hosting the Desert Bus VST checkin app
