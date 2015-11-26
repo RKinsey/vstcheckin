@@ -1,10 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"database/sql"
 	"fmt"
 	"html/template"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -58,16 +60,16 @@ func Checkin(w http.ResponseWriter, r *http.Request) {
 
 //OpenDB the database
 func OpenDB() {
-	/*read := bufio.NewReader(os.Stdin)
-		fmt.Print("Database name: ")
-		database, _ := read.ReadString('\n')
-		fmt.Print("Username: ")
-		user, _ := read.ReadString('\n')
-		fmt.Print("Password: ")
-		password, _ := read.ReadString('\n')
-	    db, _ = sql.Open("mymysql", database+"/"+user+"/"+password)*/
+	read := bufio.NewReader(os.Stdin)
+	fmt.Print("Database name: ")
+	database, _ := read.ReadString('\n')
+	fmt.Print("Username: ")
+	user, _ := read.ReadString('\n')
+	fmt.Print("Password: ")
+	password, _ := read.ReadString('\n')
+	db, _ = sql.Open("mymysql", database+"/"+user+"/"+password)
 	var err error
-	db, _ = sql.Open("mymysql", "vst/newuser/")
+	//db, _ = sql.Open("mymysql", "vst/newuser/")
 	if err != nil {
 		panic(err)
 	}
