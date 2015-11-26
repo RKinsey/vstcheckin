@@ -1,30 +1,20 @@
 package main
 
 import (
-	"bufio"
 	"database/sql"
 	"fmt"
 	"html/template"
 	"net/http"
-	"os"
 	"time"
 )
 
 //Member contains a name that will be sent to the database
 type Member struct {
-	Name        string
-	CheckinTime time.Time
+	Name, CheckinTime string
 }
 
 //var templates = template.Must(template.ParseFiles("tmpl/index.html", "tmpl/checkin.html", "tmpl/current.html"))
 var db *sql.DB
-
-type page struct {
-	Name        string
-	CheckInTime time.Time
-}
-
-var mainPage = page{Name: "Check In"}
 
 //Index handles calls to the index of the Server
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -33,8 +23,20 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 //Current handles calls to the currently checked-in user list
 func Current(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles("tmpl/current.html")
-	t.Execute(w, nil)
+	rows, _ := db.Query("SELECT * FROM checkedin")
+	defer rows.Close()
+
+	var members []Member
+	for rows.Next() {
+		m := Member{}
+		rows.Scan(&m.Name, &m.CheckinTime)
+		members = append(members, m)
+	}
+	t, err := template.ParseFiles("./tmpl/current.html")
+	if err != nil {
+		panic(err)
+	}
+	t.Execute(w, members)
 }
 
 //Checkin adds team members to the database
@@ -54,30 +56,20 @@ func Checkin(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
-//deleteEntry deletes a team member from the database.
-//Only called after the 30 minute timer expires
-func deleteEntry(name string) {
-
-}
-
 //OpenDB the database
 func OpenDB() {
-	read := bufio.NewReader(os.Stdin)
-	fmt.Print("Database name: ")
-	database, _ := read.ReadString('\n')
-	fmt.Print("Username: ")
-	user, _ := read.ReadString('\n')
-	fmt.Print("Password: ")
-	password, _ := read.ReadString('\n')
+	/*read := bufio.NewReader(os.Stdin)
+		fmt.Print("Database name: ")
+		database, _ := read.ReadString('\n')
+		fmt.Print("Username: ")
+		user, _ := read.ReadString('\n')
+		fmt.Print("Password: ")
+		password, _ := read.ReadString('\n')
+	    db, _ = sql.Open("mymysql", database+"/"+user+"/"+password)*/
 	var err error
-	db, _ = sql.Open("mymysql", database+"/"+user+"/"+password)
+	db, _ = sql.Open("mymysql", "vst/newuser/")
 	if err != nil {
 		panic(err)
 	}
-	db.Ping()
-}
 
-//CloseDB closes the connection to the sql server
-func CloseDB() {
-	db.Close()
 }
