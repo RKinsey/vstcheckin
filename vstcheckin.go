@@ -4,8 +4,6 @@ import (
 	"log"
 	"net/http"
 	"time"
-
-	_ "github.com/ziutek/mymysql/godrv"
 )
 
 //var templates = template.Must(template.ParseFiles("checkin.html", "current.html"))

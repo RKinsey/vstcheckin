@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 //Member contains a name that will be sent to the database
@@ -67,9 +69,8 @@ func OpenDB() {
 	user, _ := read.ReadString('\n')
 	fmt.Print("Password: ")
 	password, _ := read.ReadString('\n')
-	db, _ = sql.Open("mymysql", database+"/"+user+"/"+password)
+	db, _ = sql.Open("mysql", user+":"+password+"@/"+database)
 	var err error
-	//db, _ = sql.Open("mymysql", "vst/newuser/")
 	if err != nil {
 		panic(err)
 	}
