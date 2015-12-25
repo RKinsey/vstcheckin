@@ -40,7 +40,7 @@ var routes = Routes{
 
 //NewRouter controls routing for the server
 func NewRouter() *mux.Router {
-	
+
 	router := mux.NewRouter()
 	for _, route := range routes {
 		router.Methods(route.Method).
@@ -48,6 +48,6 @@ func NewRouter() *mux.Router {
 			Name(route.Name).
 			Handler(route.HandlerFunc)
 	}
-	router.PathPrefix("/static/css/").Handler(http.StripPrefix("/static/css/",http.FileServer(http.Dir("./static/css/"))))
+	router.PathPrefix("/static/css/").Handler(http.StripPrefix("/static/css/", http.FileServer(http.Dir("./static/css/"))))
 	return router
 }
