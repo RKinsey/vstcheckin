@@ -30,8 +30,12 @@ body{
 
 
 }
-table{
 
+table{
+  max-width: 1200px;
+  margin:auto;
+  position: relative;
+  vertical-align: middle;
   width: 100%;
   max-width: 1200px;
   background-color: #E5B628;
