@@ -1,6 +1,33 @@
-<h1>VST Members Currently Online</h1>
-Name Checkin Time
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="http://allfont.net/allfont.css?fonts=arcade-rounded" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' type="text/css" href="vst.css">
+    <title>DesertBus VST Checkin</title>
 
-{{range $index, $element :=.}}
-    <p>{{.Name}} {{.CheckinTime}}</p><br>
-{{end}}
+  </head>
+<body>
+  <div class="container">
+<div class="checkin-header">
+  <h1>VST Members Currently Online</h1>
+</div>
+<br>
+<table>
+<col style="width:75%;">
+<col style="width:25%;">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Checkin Time</th>
+  </tr>
+</thead>
+<tbody>
+  {{range $index, $element :=.}}
+    <tr>
+      <td>{{.Name}}</td>
+      <td>{{.CheckinTime}}</td>
+    </tr>
+  {{end}}
+</tbody>
+</div>
+</body>

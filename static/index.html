@@ -1,9 +1,31 @@
-<h1>VST Checkin</h1>
-<h3>Note: entries time out after half an hour</h3>
-<p><a href="/current">Currently checked in users</a></p>
-<form action="/checkin" method="POST">
-<div>
-    <input type="text" name="name"><br>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="http://allfont.net/allfont.css?fonts=arcade-rounded" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' type="text/css" href="css/vst.css">
+    <title>DesertBus VST Checkin</title>
+
+  </head>
+  <body>
+    <div class="container">
+    <div class="checkin-header">
+      <h1>VST Checkin</h1>
+    <span>Note: entries time out after half an hour</span>
+  </div>
+  <br>
+  <div class="checkin-main"
+    <p>
+      <a href="/current">Currently checked in users</a>
+    </p>
+    <form action="/checkin" method="POST">
+      <div>
+        <label for=name>Name</label>
+        <input type="text" name="name" required>
+      </div>
+      <div>
+        <input type="submit" value="Check in">
+      </div>
+    </form>
 </div>
-<div><input type="submit" value="Submit"></div>
-</form>
+</div>
+</html>

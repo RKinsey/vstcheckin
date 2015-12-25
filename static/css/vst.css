@@ -1,0 +1,41 @@
+body{
+    background-color:#28439C;
+
+    margin: 20px 140px;
+    min-width: 500px;
+}
+.checkin-header{
+  max-width:1200px;
+  margin: auto;
+  padding: 5px;
+  position: relative;
+  vertical-align: middle;
+  background-color: #E5B628;
+
+}
+.checkin-header h1, .checkin-header span{
+  padding-left 5px;
+  margin: 0px;
+}
+.checkin-main{
+  max-width: 1200px;
+  margin: auto;
+  padding: 5px;
+  background-color :#E5B628;
+}
+.container{
+  width: 100%;
+  position:relative;
+  vertical-align: middle;
+
+
+}
+table{
+
+  width: 100%;
+  max-width: 1200px;
+  background-color: #E5B628;
+}
+td{
+  text-align: center;
+}
